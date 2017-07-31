@@ -4,14 +4,15 @@ fs.readFile('test.html', 'utf8', function(err, data) {
     return console.log(err);
   }
 
-  const reHTML = /<!--(.*?)-->/g;
-  const reInline = /\/\//g;
-
   const removeables = {
-    html: /<!--(.*?[\s\S]*)-->/gm,
+    html: /<!--(.*?[\s]*)-->/gm,
     inline: /\/\/(.*)?/g,
+    //mline: /\/\*.*\*\//g,
+    mline: /\/\*.*[\s\S]*\*\//gm,
     console: /(console.*)/g,
-    empty: /^\s*$/gm,
+    //empty: /^\s*$/gm,
+    //empty: /^\s*\n/gm
+    empty: /^\s*[\r\n]/gm
   }
 
   let pdata = data;
