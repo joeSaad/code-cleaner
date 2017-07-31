@@ -1,10 +1,11 @@
 fs = require('fs')
+fs.readFile('test.html', 'utf8', function(err, data) {
+  if (err) {
+    return console.log(err);
+  }
 
-const mfile = "myfile.txt"
-
-// async and wait currently not working
-async function readAndProcess() {
-  let content = await fs.readFile(mfile, 'utf8')
+  const reHTML = /<!--(.*?)-->/g;
+  const reInline = /\/\//g;
 
   const removeables = {
     html: /<!--(.*?[\s\S]*)-->/gm,
@@ -13,13 +14,14 @@ async function readAndProcess() {
     empty: /^\s*$/gm,
   }
 
-  const result = content.replace(removeables.html, '').replace(removeables.inline, '').replace(removeables.console, '').replace(removeables.empty, '')
+  let pdata = data;
+  for (let key in removeables) {
+    pdata = pdata.replace(removeables[key], '')
+  }
 
-  return result
+  console.log(pdata);
+  fs.writeFile('test.html', pdata, (err) => {
+    console.log('completed');
+  })
 
-}
-
-
-readAndProcess.then(v => {
-  console.log(v);
-})
+});
