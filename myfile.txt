@@ -1,16 +1,5 @@
-console.log('write this write')
-
 Hello 
 my name is Joe
-
 <!-- Hello Joe I am a comment
     and i like music--> 
-
-console.table("Table");
-
-
-<!-- AND I HATE CONMENTS --> 
-
-// inline comment 
-
-console.log('hello', joe);
+--- READ ------ READ ---
