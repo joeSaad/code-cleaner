@@ -73,5 +73,5 @@ async function writef(mfile, data){
 	    console.log('completed');
 	  })
 })*/
-
+	
 readf(qfile).then(d=> writef(qfile,d))
