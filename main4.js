@@ -5,12 +5,10 @@ const readDirAsync = promisify(fs.readdir)
 const readFileAsync = promisify(fs.readFile)
 const writeFileAsync = promisify(fs.writeFile)
 
-
-
-
+let dirToClean
 
 if (process.argv.includes('-d')) {
-	const dirToClean = path.resolve(__dirname,process.argv.slice(3,4)[0])	
+	dirToClean = path.resolve(__dirname,process.argv.slice(3,4)[0])	
 	console.log('dirToClean : '+dirToClean);
 	cleanByDirectory(dirToClean)
 }
@@ -76,12 +74,31 @@ function cleanFile(file){
 	readF(file).then(d=> writeF(file,d))
 }
 
-function cleanByDirectory(dir) {
+/*function cleanByDirectory(dir) {
 	readD(dir).then(files=> {
 	files.forEach(f=>{
 		const rf = path.resolve(dir,f);
 		cleanFile(rf)
 		})
-	console.log('\x1b[36m%s\x1b[0m', 'files cleaned')
+	console.log('\x1b[32m%s\x1b[0m', 'files cleaned')
 	})	
+}*/
+
+
+function cleanByDirectory(dir) {
+	const dirt = readDirR(dirToClean);
+	dirt.forEach(f=>{
+		const rf = path.resolve(dir,f);
+		cleanFile(rf)
+		})
+	console.log('\x1b[32m%s\x1b[0m', 'files cleaned')
+	
 }
+
+
+function readDirR(dir) {
+    return fs.statSync(dir).isDirectory()
+        ? Array.prototype.concat(...fs.readdirSync(dir).map(f => readDirR(path.join(dir, f))))
+        : dir;
+}
+
