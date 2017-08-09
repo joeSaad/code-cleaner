@@ -18,7 +18,6 @@ else {
 }
 
 
-
 const removeables = {
 	html: /<!--(.*?[\s]*)-->/gm,
 	inline: /\/\/(.*)?/g,
@@ -27,17 +26,9 @@ const removeables = {
 	empty: /^\s*[\r\n]/gm
 }
 
-
-/*fs.readdir(__dirname, (err, files) => {
-  files.forEach(file => {
-    console.log(file);
-  });
-})*/
-
 async function readD(directory){
 	try{
 		const dirArr = await readDirAsync(directory)
-		//console.log('dirArr : '+dirArr);
 		return dirArr
 	}
 	catch(error){
@@ -49,7 +40,6 @@ async function readD(directory){
 async function readF(mfile) {
     try {
         const text = await readFileAsync(mfile, {encoding: 'utf8'});
-        //console.log('CONTENT:', text);
         return text;
     }
     catch (err) {
@@ -74,17 +64,6 @@ function cleanFile(file){
 	readF(file).then(d=> writeF(file,d))
 }
 
-/*function cleanByDirectory(dir) {
-	readD(dir).then(files=> {
-	files.forEach(f=>{
-		const rf = path.resolve(dir,f);
-		cleanFile(rf)
-		})
-	console.log('\x1b[32m%s\x1b[0m', 'files cleaned')
-	})	
-}*/
-
-
 function cleanByDirectory(dir) {
 	const dirt = readDirR(dirToClean);
 	dirt.forEach(f=>{
@@ -94,7 +73,6 @@ function cleanByDirectory(dir) {
 	console.log('\x1b[32m%s\x1b[0m', 'files cleaned')
 	
 }
-
 
 function readDirR(dir) {
     return fs.statSync(dir).isDirectory()

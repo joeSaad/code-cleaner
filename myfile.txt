@@ -1,5 +1,0 @@
-Hello 
-my name is Joe
-<!-- Hello Joe I am a comment
-    and i like music--> 
---- READ ------ READ ---
