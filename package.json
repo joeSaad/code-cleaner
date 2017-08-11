@@ -1,7 +1,7 @@
 {
   "name": "code-cleaner",
-  "version": "1.0.1",
-  "description": "This package allows you to clean all your code from consoles, comments and debuggers with specifying directories to clean or specific files to clean",
+  "version": "1.0.2",
+  "description": "This package allows you to clean all your code from consoles, comments with specifying directories or files to clean",
   "main": "index.js",
   "bin": {
     "code-cleaner": "./index.js"

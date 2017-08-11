@@ -37,4 +37,4 @@ $ create-rc-comp .
 
 ## Todo
 Open for contribution/pull request 
-- Include more files of code
+- Include more types of files to clean e.g. (.py, .bash, .scala)
