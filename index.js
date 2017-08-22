@@ -19,12 +19,12 @@ program
 	.version(pkg.version)
 	.usage('[options] <file ...>')
 	.option('-v, --version', 'Get version')
-	.option('-d, --directory', 'Clean directory files')
-	.option('., --directory', 'Clean directory files')
+	.option('-d, --directory', 'Clean given directory files')
+	.option('., --directory', 'Clean current directory files')
 	.parse(process.argv)
 
 	if (program.directory) {
-		dirToClean = process.cwd()
+		dirToClean = (process.argv[3] === undefined) ? process.cwd() : path.resolve(process.argv[3])
 		cleanByDirectory(dirToClean)
 		console.log(`Files at ${dirToClean} are cleaned 👍🏼`.bgGreen)
 
@@ -38,8 +38,9 @@ program
 const removeables = {
 	html: /<!--(.*?[\s]*)-->/gm,
 	inline: /\/\/(.*)?/g,
-	mline: /\/\*.*[\s\S]*\*\//gm,
+	mline: /\/\*.*[\S]*\*\//gm,
 	console: /(console.*)/g,
+	debugged: /(debugger.*)/g,
 	empty: /^\s*[\r\n]/gm
 }
 
