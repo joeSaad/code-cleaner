@@ -32,7 +32,7 @@ $ code-cleaner <file_with_its_path>
  If you want to clean files in a directory at once
 ```sh
 $ cd <directory>
-$ create-rc-comp . 
+$ code-cleaner . 
 ```
 
 ## Todo
