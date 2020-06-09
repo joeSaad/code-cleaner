@@ -1,0 +1,15 @@
+{
+    "filesSupported": [
+        "html",
+        "xhtml",
+        "xml",
+        "css",
+        "scss",
+        "less",
+        "js",
+        "jsx",
+        "ts",
+        "vue",
+        "java"
+    ]
+}
